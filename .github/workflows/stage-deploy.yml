@@ -1,0 +1,27 @@
+name: Stage deploy
+
+on:
+  push:
+    branches:
+      - stage
+  pull_request:
+    branches:
+      - stage
+
+env:
+  SFTP_PATH: ${{ secrets.STAGE_PATH }}
+
+jobs:
+  stage-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy Files
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PEM_KEY }}
+          REMOTE_HOST: ${{ secrets.SFTP_SERVER }}
+          REMOTE_USER: ${{ secrets.SFTP_USERNAME }}
+          TARGET: ${{ env.SFTP_PATH }}
+          EXCLUDE: "/.git/, /.github/"
