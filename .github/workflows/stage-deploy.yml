@@ -34,6 +34,7 @@ jobs:
           key: ${{ secrets.SSH_PEM_KEY }}
           host: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
+          port: ${{ secrets.SFTP_PORT }}
           script: |
             cd ${{ env.SFTP_PATH }}
             docker build -t ai-front-app .
