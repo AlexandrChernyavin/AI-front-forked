@@ -3,7 +3,7 @@ name: Stage deploy
 on:
   release:
     types:
-      - released
+      - published
 
 env:
   SFTP_PATH: ${{ secrets.STAGE_PATH }}
