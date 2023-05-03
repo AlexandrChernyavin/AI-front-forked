@@ -38,4 +38,6 @@ jobs:
           script: |
             cd ${{ env.SFTP_PATH }}
             docker build -t ai-front-app .
+            docker stop ai-front-app
+            docker container prune -f
             docker run -d -p 80:80 ai-front-app
