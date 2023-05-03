@@ -26,3 +26,4 @@ jobs:
           REMOTE_PORT: ${{ secrets.SFTP_PORT }}
           TARGET: ${{ env.SFTP_PATH }}
           EXCLUDE: "/.git/, /.github/"
+          SCRIPT_BEFORE: rm -rf ${{ env.SFTP_PATH }}/*
