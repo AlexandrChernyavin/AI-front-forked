@@ -27,3 +27,14 @@ jobs:
           TARGET: ${{ env.SFTP_PATH }}
           EXCLUDE: "/.git/, /.github/"
           SCRIPT_BEFORE: rm -rf ${{ env.SFTP_PATH }}/*
+
+      - name: Run docker
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.SSH_PEM_KEY }}
+          host: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          script: |
+            cd ${{ env.SFTP_PATH }}
+            docker build -t ai-front-app .
+            docker run -d -p 80:80 ai-front-app
