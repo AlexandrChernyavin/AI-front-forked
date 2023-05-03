@@ -28,7 +28,7 @@ jobs:
           EXCLUDE: "/.git/, /.github/"
           SCRIPT_BEFORE: rm -rf ${{ env.SFTP_PATH }}/*
 
-      - name: Run docker
+      - name: Run Docker
         uses: appleboy/ssh-action@master
         with:
           key: ${{ secrets.SSH_PEM_KEY }}
