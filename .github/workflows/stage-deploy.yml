@@ -37,6 +37,7 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           script: |
             cd ${{ env.SFTP_PATH }}
+            docker rmi ai-front-app -f
             docker build -t ai-front-app .
             docker stop ai-front-app
             docker container prune -f
