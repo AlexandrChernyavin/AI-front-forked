@@ -41,3 +41,16 @@ jobs:
             docker container prune -f
             docker run -d --name ai-front-app -p 80:80 ai-front-app
             docker images -q --filter "dangling=true" | xargs docker rmi
+
+      - name: Update CHANGELOG.md
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          release-notes: ${{ github.event.release.body }}
+          latest-version: ${{ github.event.release.name }}
+
+      - name: Commit Updated Changelog
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: master
+          commit_message: 'docs: update version and CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
+          file_pattern: CHANGELOG.md
