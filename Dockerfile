@@ -1,3 +1,4 @@
+# let's GO!
 FROM node:alpine as builder
 
 WORKDIR /app
