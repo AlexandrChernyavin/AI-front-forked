@@ -43,7 +43,6 @@ jobs:
             docker ps -q --filter "name=ai-front-app" | grep -q . && docker stop ai-front-app
             docker container prune -f
             docker run -d --name ai-front-app --restart always -p 8080:80 ai-front-app
-            docker images -q --filter "dangling=true" | xargs docker rmi
 
       - name: Update CHANGELOG.md
         uses: stefanzweifel/changelog-updater-action@v1
