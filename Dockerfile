@@ -1,6 +1,4 @@
-# let's GO!
-# maybe...
-FROM node:alpine as builder
+FROM node:alpine AS builder
 
 WORKDIR /app
 
@@ -8,13 +6,10 @@ COPY . .
 
 RUN npm install && npm run build
 
-FROM nginx:alpine
+ENV HOST=0.0.0.0
+ENV PORT=3000
+EXPOSE 3000
 
-RUN rm -rf /usr/share/nginx/html/*
+ENTRYPOINT ["node"]
 
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-ENTRYPOINT ["nginx"]
-
-# Some comment
-CMD ["-g", "daemon off;"]
+CMD ["./dist/server/entry.mjs"]
