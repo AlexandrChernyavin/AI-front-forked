@@ -11,7 +11,7 @@ on:
       - '*.x'
 
 jobs:
-  update_release_draft:
+  create-release-draft:
   
     runs-on: ubuntu-latest
 

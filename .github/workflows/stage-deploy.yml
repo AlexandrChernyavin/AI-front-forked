@@ -1,4 +1,4 @@
-name: Stage deploy
+name: Stage Deploy
 
 on:
   workflow_dispatch:
@@ -11,7 +11,9 @@ env:
 
 jobs:
   stage-deploy:
-    runs-on: ubuntu-20.04
+    
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
