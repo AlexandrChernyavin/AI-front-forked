@@ -28,7 +28,6 @@ jobs:
       - name: Create Draft Release
         uses: release-drafter/release-drafter@v5
         with:
-          commitish: '0.x'
           header: |
             ### Release Date: ${{ steps.calver.outputs.date }}
 
