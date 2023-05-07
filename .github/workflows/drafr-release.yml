@@ -4,14 +4,15 @@ on:
   pull_request:
     types:
       - closed
+    branches:
+      - '*.x'
   push:
     branches:
       - '*.x'
 
 jobs:
   update_release_draft:
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
-    
+  
     runs-on: ubuntu-latest
 
     permissions:
@@ -27,6 +28,7 @@ jobs:
       - name: Create Draft Release
         uses: release-drafter/release-drafter@v5
         with:
+          commitish: '0.x'
           header: |
             ### Release Date: ${{ steps.calver.outputs.date }}
 
